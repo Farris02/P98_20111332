@@ -139,22 +139,22 @@ public class Admin extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(41, 41, 41)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(r_s, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Admins_View, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(28, 28, 28))
+                                        .addComponent(r_s, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(Remove_Courses, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                            .addComponent(Remove_Courses, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                     .addComponent(Remove_Students, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGap(22, 22, 22))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addComponent(v_a, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(Admins_View, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                            .addGap(15, 15, 15)
+                                                            .addComponent(v_a, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                     .addGap(36, 36, 36)))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
@@ -221,40 +221,47 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Students_ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Students_ViewActionPerformed
-               this.setVisible(false);
-    new Admin().setVisible(true);
+    this.setVisible(false);
+    new Viewing_Student().setVisible(true);
     }//GEN-LAST:event_Students_ViewActionPerformed
 
     private void Admins_ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Admins_ViewActionPerformed
-        // TODO add your handling code here:
+     this.setVisible(false);
+     new Viewing_Admins().setVisible(true);
     }//GEN-LAST:event_Admins_ViewActionPerformed
 
     private void Courses_ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Courses_ViewActionPerformed
-        // TODO add your handling code here:
+     this.setVisible(false);
+     new Viewing_Courses().setVisible(true);
     }//GEN-LAST:event_Courses_ViewActionPerformed
 
     private void Add_CoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_CoursesActionPerformed
-        // TODO add your handling code here:
+     this.setVisible(false);
+     new Course_Add().setVisible(true);
     }//GEN-LAST:event_Add_CoursesActionPerformed
 
     private void Add_StudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_StudentsActionPerformed
-        // TODO add your handling code here:
+     this.setVisible(false);
+     new Students_Add().setVisible(true);
     }//GEN-LAST:event_Add_StudentsActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        // TODO add your handling code here:
+     System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
     private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
-        // TODO add your handling code here:
+     this.setVisible(false);
+     new Logging_In().setVisible(true);
     }//GEN-LAST:event_MenuActionPerformed
 
     private void Remove_StudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Remove_StudentsActionPerformed
-        // TODO add your handling code here:
+     this.setVisible(false);
+     new Students_Remove().setVisible(true);
     }//GEN-LAST:event_Remove_StudentsActionPerformed
 
     private void Remove_CoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Remove_CoursesActionPerformed
-        // TODO add your handling code here:
+     this.setVisible(false);
+     new Course_Remove().setVisible(true);
     }//GEN-LAST:event_Remove_CoursesActionPerformed
 
     /**

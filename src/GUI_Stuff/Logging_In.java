@@ -84,7 +84,7 @@ public class Logging_In extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -129,15 +129,16 @@ public class Logging_In extends javax.swing.JFrame {
         ResultSet rs;
         String logging = "SELECT * FROM ADMINS WHERE username=? AND password=?";
           try {
-            conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd;create=true", "pdc", "pdc");
+            conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd; create=true", "pdc", "pdc");
+              System.out.println(logging + "Connection Established");
             PreparedStatement st = conn.prepareStatement(logging);
             st.setString(1,username.getText());
             st.setString(2, password.getText());
             rs = st.executeQuery();
             if(rs.next()){
-                JOptionPane.showMessageDialog(null,"Login Successful");
                 this.setVisible(false);
-                new Admin().setVisible(true);
+                new Admin().setVisible(true); 
+                JOptionPane.showMessageDialog(null,"Login Successful");
             }
             else{
                 JOptionPane.showMessageDialog(null,"Login Fail");

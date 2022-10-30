@@ -5,28 +5,30 @@
  */
 package GUI_Stuff;
 
-import Connection_to_Database.DB_Manager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import Connection_to_Database.DB_Manager;
 /**
  *
  * @author Admin
  */
-public class Viewing_Admins extends javax.swing.JFrame {
+public class Viewing_Student extends javax.swing.JFrame {
 
     /**
-     * Creates new form Viewing_Admins
+     * Creates new form Student_View
      */
-    public Viewing_Admins() {
+    public Viewing_Student() {
         initComponents();
+       // Students_In_JTable();
     }
 
     /**
@@ -39,9 +41,9 @@ public class Viewing_Admins extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        Table = new javax.swing.JTable();
-        Main_Menu = new javax.swing.JButton();
+        jTable1 = new javax.swing.JTable();
         Exit = new javax.swing.JButton();
+        Main_Menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -50,35 +52,35 @@ public class Viewing_Admins extends javax.swing.JFrame {
             }
         });
 
-        Table.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "First Name", "Last Name", "User Name", "Password"
+                "Student ID", "First Name ", "Last Name", "Address", "Phone Number"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        ));
+        jTable1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jTable1ComponentShown(evt);
             }
         });
-        jScrollPane1.setViewportView(Table);
-
-        Main_Menu.setText("Back to Menu");
-        Main_Menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Main_MenuActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jTable1);
 
         Exit.setText("Exit");
         Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExitActionPerformed(evt);
+            }
+        });
+
+        Main_Menu.setText("Main Menu");
+        Main_Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Main_MenuActionPerformed(evt);
             }
         });
 
@@ -88,25 +90,44 @@ public class Viewing_Admins extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Main_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE))
+                    .addComponent(Exit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Main_Menu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Main_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Main_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+            .addComponent(jScrollPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   
+   
+  
+    
+    private void Main_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Main_MenuActionPerformed
+       setVisible(false);
+       new Admin().setVisible(true);
+    }//GEN-LAST:event_Main_MenuActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+      System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
+
+    private void jTable1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTable1ComponentShown
+         
+      
+    }//GEN-LAST:event_jTable1ComponentShown
+
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-       Connection conn = null;   
+         Connection conn = null;   
          ResultSet rs = null;
        //JTableHeader header = jTable1.getTableHeader();
         // ((DefaultTableCellRenderer)header.getDefaultRenderer()).setBackground(Color.BLACK);
@@ -114,34 +135,22 @@ public class Viewing_Admins extends javax.swing.JFrame {
            
         try {
             DB_Manager manage = new DB_Manager();
-            String logging = "SELECT *FROM ADMINS"; 
+            String logging = "SELECT *FROM STUDENTS_INFO"; 
             conn = manage.getConnection(); 
                  System.out.println("jdbc:derby:CourseDB_Ebd; create=true" + " Connection Established");
               PreparedStatement st = conn.prepareStatement(logging);
               rs = st.executeQuery();
              
-            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
             //Reading data from rooms table and displaying it 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+                model.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }                                     
-       
-        
-                                          
+        }
     }//GEN-LAST:event_formComponentShown
-
-    private void Main_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Main_MenuActionPerformed
-      setVisible(false);
-      new Admin().setVisible(true);
-    }//GEN-LAST:event_Main_MenuActionPerformed
-
-    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_ExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,20 +169,21 @@ public class Viewing_Admins extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Viewing_Admins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Viewing_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Viewing_Admins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Viewing_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Viewing_Admins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Viewing_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Viewing_Admins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Viewing_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Viewing_Admins().setVisible(true);
+                new Viewing_Student().setVisible(true);
             }
         });
     }
@@ -181,7 +191,7 @@ public class Viewing_Admins extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Exit;
     private javax.swing.JButton Main_Menu;
-    private javax.swing.JTable Table;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

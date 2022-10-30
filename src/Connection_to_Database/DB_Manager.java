@@ -29,7 +29,7 @@ public final class DB_Manager {
      */
     private static final String USER_NAME = "pdc"; //your DB username
     private static final String PASSWORD = "pdc"; //your DB password
-    private static final String URL = "jdbc:derby:CourseDB_Ebd; create=true";  //url of the DB host
+    private static final String URL = "jdbc:derby:CourseDB_Ebd;create=true";  //url of the DB host
 
     Connection conn;
 

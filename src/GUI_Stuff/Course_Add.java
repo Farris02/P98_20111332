@@ -5,6 +5,18 @@
  */
 package GUI_Stuff;
 
+import Connection_to_Database.DB_Manager;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -27,21 +39,227 @@ public class Course_Add extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Add_Info = new javax.swing.JLabel();
+        Student_ID = new javax.swing.JLabel();
+        First_Name = new javax.swing.JLabel();
+        Last_Name = new javax.swing.JLabel();
+        Address = new javax.swing.JLabel();
+        address = new javax.swing.JTextField();
+        phone_num = new javax.swing.JTextField();
+        telephone_num = new javax.swing.JLabel();
+        stud_id = new javax.swing.JTextField();
+        add = new javax.swing.JButton();
+        f_name = new javax.swing.JTextField();
+        last_name = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table = new javax.swing.JTable();
+        Add_Info1 = new javax.swing.JLabel();
+        Student_ID1 = new javax.swing.JLabel();
+        First_Name1 = new javax.swing.JLabel();
+        Last_Name1 = new javax.swing.JLabel();
+        Address1 = new javax.swing.JLabel();
+        Year = new javax.swing.JTextField();
+        Semester = new javax.swing.JTextField();
+        telephone_num1 = new javax.swing.JLabel();
+        Course_Code = new javax.swing.JTextField();
+        Add = new javax.swing.JButton();
+        Course_Name = new javax.swing.JTextField();
+        Price = new javax.swing.JTextField();
+        Main_Menu = new javax.swing.JButton();
+        Exit = new javax.swing.JButton();
+
+        Add_Info.setText("                     Add Information Here");
+
+        Student_ID.setText("StudentID");
+
+        First_Name.setText("First Name");
+
+        Last_Name.setText("Last Name");
+
+        Address.setText("Address");
+
+        telephone_num.setText("Phone Number");
+
+        add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+
+        Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Course Code", "Course Name", "Price", "Year", "Semester"
+            }
+        ));
+        jScrollPane1.setViewportView(Table);
+
+        Add_Info1.setText("                     Add Information Here");
+
+        Student_ID1.setText("Course Code");
+
+        First_Name1.setText("Course Name");
+
+        Last_Name1.setText("Price");
+
+        Address1.setText("Year");
+
+        telephone_num1.setText("Semester");
+
+        Add.setText("Add");
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
+
+        Main_Menu.setText("Main Menu");
+
+        Exit.setText("Exit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Add_Info1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(51, 51, 51)
+                                        .addComponent(Student_ID1))
+                                    .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Course_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Course_Code, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Year, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Semester, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(47, 47, 47)
+                                        .addComponent(First_Name1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(65, 65, 65)
+                                        .addComponent(Last_Name1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(66, 66, 66)
+                                        .addComponent(Address1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(telephone_num1)))
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)))))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Main_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Main_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(Add_Info1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(Student_ID1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Course_Code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(First_Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Course_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Last_Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Address1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(telephone_num1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Semester, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(Add)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+      
+    }//GEN-LAST:event_addActionPerformed
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        String crse_id = Course_Code.getText().trim();
+        String crse_name = Course_Name.getText().trim();
+        Float price = Float.parseFloat(Price.getText().trim());
+        String year = Year.getText().trim();
+        String semester = Semester.getText().trim();
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd ;create=true", "pdc", "pdc");
+            Statement st = conn.createStatement();
+
+            if(crse_id.isEmpty() || crse_name.isEmpty() || Price.getText().equals(" ") || year.isEmpty() || semester.isEmpty())
+            {
+                JOptionPane.showMessageDialog(this,"Not all fields have been submitted");
+            }
+            else{
+                st.execute("INSERT INTO COURSES VALUES ('"+crse_id+"','"+crse_name+"',"+price+",'"+year+"','"+semester+"')");
+                JOptionPane.showMessageDialog(this, "Course Registered.");
+                setVisible(false);
+                new Course_Add().setVisible(true);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AddActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        Connection conn = null;   
+         ResultSet rs = null;
+        try {
+            DB_Manager manage = new DB_Manager();
+            String logging = "SELECT *FROM COURSES"; 
+            conn = manage.getConnection(); 
+                 System.out.println("jdbc:derby:CourseDB_Ebd; create=true" + " Connection Established");
+              PreparedStatement st = conn.prepareStatement(logging);
+              rs = st.executeQuery();
+             
+            DefaultTableModel model = (DefaultTableModel) Table.getModel();
+
+       
+            while (rs.next()) {
+                model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5)});
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -80,5 +298,33 @@ public class Course_Add extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
+    private javax.swing.JLabel Add_Info;
+    private javax.swing.JLabel Add_Info1;
+    private javax.swing.JLabel Address;
+    private javax.swing.JLabel Address1;
+    private javax.swing.JTextField Course_Code;
+    private javax.swing.JTextField Course_Name;
+    private javax.swing.JButton Exit;
+    private javax.swing.JLabel First_Name;
+    private javax.swing.JLabel First_Name1;
+    private javax.swing.JLabel Last_Name;
+    private javax.swing.JLabel Last_Name1;
+    private javax.swing.JButton Main_Menu;
+    private javax.swing.JTextField Price;
+    private javax.swing.JTextField Semester;
+    private javax.swing.JLabel Student_ID;
+    private javax.swing.JLabel Student_ID1;
+    private javax.swing.JTable Table;
+    private javax.swing.JTextField Year;
+    private javax.swing.JButton add;
+    private javax.swing.JTextField address;
+    private javax.swing.JTextField f_name;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField last_name;
+    private javax.swing.JTextField phone_num;
+    private javax.swing.JTextField stud_id;
+    private javax.swing.JLabel telephone_num;
+    private javax.swing.JLabel telephone_num1;
     // End of variables declaration//GEN-END:variables
 }
