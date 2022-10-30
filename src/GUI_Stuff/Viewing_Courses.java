@@ -64,6 +64,11 @@ public class Viewing_Courses extends javax.swing.JFrame {
         });
 
         Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,9 +121,13 @@ public class Viewing_Courses extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void Main_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Main_MenuActionPerformed
-        setVisible(true);
-        new Admin().setVisible(false);
+        setVisible(false);
+        new Admin().setVisible(true);
     }//GEN-LAST:event_Main_MenuActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
 
     /**
      * @param args the command line arguments

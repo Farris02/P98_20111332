@@ -23,83 +23,60 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="Menu" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="Exit" min="-2" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="add_s" min="-2" max="-2" attributes="0"/>
+                          <Component id="Add_Students" min="-2" pref="108" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="v_s" min="-2" pref="91" max="-2" attributes="0"/>
-                                  <Component id="Students_View" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Component id="r_s" min="-2" pref="96" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="Remove_Courses" min="-2" pref="121" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="Remove_Students" min="-2" pref="121" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="Admins_View" min="-2" pref="100" max="-2" attributes="0"/>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                                          <Component id="v_a" min="-2" pref="72" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                              </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="Add_Courses" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="add_s" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="add_c" min="-2" pref="124" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="v_c" min="-2" pref="121" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="Remove_Admins" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                          <Component id="Courses_View" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Component id="Courses_View" min="-2" pref="105" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Add_Students" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="add_c" min="-2" pref="82" max="-2" attributes="0"/>
-                                  <Component id="Add_Courses" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="r_c" min="-2" pref="82" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="v_s" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="Students_View" min="-2" pref="113" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="v_a" min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="v_c" min="-2" pref="121" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="Admins_View" min="-2" pref="107" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace pref="155" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="Menu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="Exit" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,39 +87,39 @@
                   <Component id="Exit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Menu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="v_s" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="v_a" alignment="3" max="32767" attributes="0"/>
-                  <Component id="v_c" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="v_c" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="v_a" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="v_s" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Students_View" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Admins_View" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Courses_View" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="add_s" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="r_s" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="add_c" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="add_s" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Add_Students" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Remove_Students" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="add_c" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                  <Component id="r_c" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Add_Courses" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Remove_Courses" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Add_Students" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Remove_Admins" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -187,14 +164,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Courses_ViewActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="r_s">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Remove Students"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="Add_Courses">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Courses"/>
+        <Property name="text" type="java.lang.String" value="Add/Remove Courses"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Add_CoursesActionPerformed"/>
@@ -202,7 +174,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="add_s">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Students"/>
+        <Property name="text" type="java.lang.String" value="Add/Remove Students"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Add_Students">
@@ -229,31 +201,23 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Remove_Students">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Remove Students"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Remove_StudentsActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="add_c">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Courses"/>
+        <Property name="text" type="java.lang.String" value="Add/Remove Courses"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Remove_Courses">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Remove Courses"/>
+        <Property name="text" type="java.lang.String" value="Remove Admins"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="Remove_Admins">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Remove Admins"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Remove_CoursesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Remove_AdminsActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="r_c">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Add Courses"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -9,9 +9,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.lang.NumberFormatException;
 
 /**
  *
@@ -36,7 +38,7 @@ public class Register extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        First_Name = new javax.swing.JTextField();
+        Admin_ID = new javax.swing.JTextField();
         New_pswd = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,20 +50,17 @@ public class Register extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         Last_Name = new javax.swing.JTextField();
+        First_Name = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        Show_Pass = new javax.swing.JCheckBox();
 
         jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        First_Name.addActionListener(new java.awt.event.ActionListener() {
+        Admin_ID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                First_NameActionPerformed(evt);
-            }
-        });
-
-        New_pswd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                New_pswdActionPerformed(evt);
+                Admin_IDActionPerformed(evt);
             }
         });
 
@@ -92,19 +91,28 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
-        New_usn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                New_usnActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Enter a new username");
 
         jLabel7.setText("Last  Name");
 
-        Last_Name.addActionListener(new java.awt.event.ActionListener() {
+        Last_Name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Last_NameKeyPressed(evt);
+            }
+        });
+
+        First_Name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                First_NameKeyPressed(evt);
+            }
+        });
+
+        jLabel4.setText("Admin ID");
+
+        Show_Pass.setText("Show Password");
+        Show_Pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Last_NameActionPerformed(evt);
+                Show_PassActionPerformed(evt);
             }
         });
 
@@ -115,45 +123,57 @@ public class Register extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel6))
-                                    .addGap(10, 10, 10))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(New_pswd, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(First_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(New_usn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Last_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jButton2))
-                .addContainerGap(128, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel3)
+                                                    .addComponent(jLabel6))
+                                                .addGap(10, 10, 10))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(New_pswd, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Admin_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(New_usn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Last_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(First_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(Show_Pass))
+                            .addComponent(jButton2))
+                        .addContainerGap(9, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(153, 153, 153))))
+                        .addGap(104, 104, 104)
+                        .addComponent(jButton3))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(First_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jButton3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Admin_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(First_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Last_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,7 +184,8 @@ public class Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(New_pswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Show_Pass))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
@@ -175,52 +196,93 @@ public class Register extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void First_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_First_NameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_First_NameActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     int id = 0;
      String fi = First_Name.getText().trim();
      String la = Last_Name.getText().trim();
      String us = New_usn.getText().trim();
      String pass = New_pswd.getText().trim();
+   
+     try{
+     id = Integer.parseInt(Admin_ID.getText());
+           
+    }
+    catch(NumberFormatException ex){
+          JOptionPane.showMessageDialog(null,"Please Enter an Integer");
+           this.setVisible(false);
+           new Register().setVisible(true);
+        }
         try {
+         
             Connection conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd;create=true", "pdc", "pdc");
             Statement st = conn.createStatement();
-            
-            if(fi.isEmpty() || la.isEmpty() || us.isEmpty() || pass.isEmpty()){
-                JOptionPane.showMessageDialog(this,"Not all fields have been submitted");
+         
+            if( Admin_ID.getText().equals("")|| fi.equals("") || la.equals("") || us.equals("") || pass.equals("")){
+                
+                JOptionPane.showMessageDialog(null,"Not all fields have been submitted");
             }
-            else{
-                 st.execute("INSERT INTO ADMINS VALUES ('"+fi+"','"+la+"','"+us+"','"+pass+"')");
-              JOptionPane.showMessageDialog(this, "Admin Registered."); 
+            else if(!Character.isAlphabetic(id) && id != 0){
+              st.execute("INSERT INTO ADMINS (ADMIN_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)VALUES ("+id+",'"+fi+"','"+la+"','"+us+"','"+pass+"')");
+              JOptionPane.showMessageDialog(null, "Admin Registered."); 
+              this.setVisible(false);
+              new Register().setVisible(true);
              
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+           
+        } catch(NumberFormatException ex){
+          JOptionPane.showMessageDialog(null,"Not all fields have been submitted");
         }
+        catch (SQLException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
       System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void New_usnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_usnActionPerformed
-        
-    }//GEN-LAST:event_New_usnActionPerformed
-
-    private void Last_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Last_NameActionPerformed
-        
-    }//GEN-LAST:event_Last_NameActionPerformed
-
-    private void New_pswdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_New_pswdActionPerformed
-        
-    }//GEN-LAST:event_New_pswdActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        this.setVisible(false);
         new Login().setVisible(true); 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void First_NameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_First_NameKeyPressed
+       char c = evt.getKeyChar();
+        
+        if(Character.isLetter(c) || Character.isWhitespace(c) || Character.isISOControl(c)){
+            First_Name.setEditable(true);
+        }
+        else{
+            First_Name.setEditable(false);
+        }
+    }//GEN-LAST:event_First_NameKeyPressed
+
+    private void Last_NameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Last_NameKeyPressed
+        char c = evt.getKeyChar();
+        
+        if(Character.isAlphabetic(c) || Character.isWhitespace(c) || Character.isISOControl(c)){
+            Last_Name.setEditable(true);
+           
+        }
+        else{
+            Last_Name.setEditable(false);
+            
+        }
+    }//GEN-LAST:event_Last_NameKeyPressed
+
+    private void Admin_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Admin_IDActionPerformed
+        
+    }//GEN-LAST:event_Admin_IDActionPerformed
+
+    private void Show_PassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Show_PassActionPerformed
+       if (Show_Pass.isSelected()) {
+            New_pswd.setEchoChar((char) 0);
+        } else if (!Show_Pass.isSelected()) {
+            New_pswd.setEchoChar('*');
+        }
+    }//GEN-LAST:event_Show_PassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,16 +320,19 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Admin_ID;
     private javax.swing.JTextField First_Name;
     private javax.swing.JTextField Last_Name;
     private javax.swing.JPasswordField New_pswd;
     private javax.swing.JTextField New_usn;
+    private javax.swing.JCheckBox Show_Pass;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

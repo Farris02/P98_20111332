@@ -44,8 +44,8 @@ public class CourseDB {
     }
 public static void addingAdminsUsnPswd(CourseDB sbs) throws SQLException{
     sbs.checkExistedTable("ADMINS");
-    sbs.statement.addBatch("CREATE TABLE ADMINS (FIRST_NAME VARCHAR(50), LAST_NAME VARCHAR(50), USERNAME VARCHAR(50), PASSWORD  VARCHAR(50))");
-    sbs.statement.addBatch("INSERT INTO ADMINS VALUES ('Ferris', 'Nakasha','admin', 'admin202')");
+    sbs.statement.addBatch("CREATE TABLE ADMINS (ADMIN_ID INT, FIRST_NAME VARCHAR(50), LAST_NAME VARCHAR(50), USERNAME VARCHAR(50), PASSWORD  VARCHAR(50))");
+    sbs.statement.addBatch("INSERT INTO ADMINS VALUES (14123213,'Ferris', 'Nakasha','admin', 'admin202')");
     sbs.statement.executeBatch();
 }
 /*

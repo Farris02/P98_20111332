@@ -55,11 +55,11 @@ public class Viewing_Admins extends javax.swing.JFrame {
 
             },
             new String [] {
-                "First Name", "Last Name", "User Name", "Password"
+                "Admin_ID", "First Name", "Last Name", "User Name", "Password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -124,7 +124,7 @@ public class Viewing_Admins extends javax.swing.JFrame {
 
             //Reading data from rooms table and displaying it 
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
+                model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
