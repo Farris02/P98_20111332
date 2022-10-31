@@ -91,16 +91,15 @@ public class Viewing_Courses extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(846, 591));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         Connection conn = null;   
          ResultSet rs = null;
-       //JTableHeader header = jTable1.getTableHeader();
-        // ((DefaultTableCellRenderer)header.getDefaultRenderer()).setBackground(Color.BLACK);
-        //header.setFont(new Font("Helvetica Neue", Font.BOLD, 14));
-           
+      
+           //Same as other Jtable Methods
         try {
             DB_Manager manage = new DB_Manager();
             String logging = "SELECT *FROM COURSES"; 
@@ -111,7 +110,7 @@ public class Viewing_Courses extends javax.swing.JFrame {
              
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
 
-            //Reading data from rooms table and displaying it 
+           
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getString(4), rs.getString(5)});
             }
@@ -121,11 +120,13 @@ public class Viewing_Courses extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void Main_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Main_MenuActionPerformed
+       //takes you bacck to Admin Menu
         setVisible(false);
         new Admin().setVisible(true);
     }//GEN-LAST:event_Main_MenuActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        //exits program
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
@@ -154,6 +155,13 @@ public class Viewing_Courses extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Viewing_Courses.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

@@ -21,12 +21,12 @@ import Connection_to_Database.DB_Manager;
  *
  * @author Admin
  */
-public class Viewing_Student extends javax.swing.JFrame {
+public class Viewing_Students extends javax.swing.JFrame {
 
     /**
      * Creates new form Student_View
      */
-    public Viewing_Student() {
+    public Viewing_Students() {
         initComponents();
        // Students_In_JTable();
     }
@@ -105,7 +105,8 @@ public class Viewing_Student extends javax.swing.JFrame {
             .addComponent(jScrollPane1)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(850, 549));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
    
@@ -129,10 +130,8 @@ public class Viewing_Student extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
          Connection conn = null;   
          ResultSet rs = null;
-       //JTableHeader header = jTable1.getTableHeader();
-        // ((DefaultTableCellRenderer)header.getDefaultRenderer()).setBackground(Color.BLACK);
-        //header.setFont(new Font("Helvetica Neue", Font.BOLD, 14));
-           
+      
+           // Same as Other JTable methods however includes STUDENTS_INFO and gets two ints and 3 strings.
         try {
             DB_Manager manage = new DB_Manager();
             String logging = "SELECT *FROM STUDENTS_INFO"; 
@@ -142,10 +141,9 @@ public class Viewing_Student extends javax.swing.JFrame {
               rs = st.executeQuery();
              
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
-            //Reading data from rooms table and displaying it 
+            
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
+                model.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)});
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -169,21 +167,23 @@ public class Viewing_Student extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Viewing_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Viewing_Students.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Viewing_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Viewing_Students.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Viewing_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Viewing_Students.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Viewing_Student.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Viewing_Students.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Viewing_Student().setVisible(true);
+                new Viewing_Students().setVisible(true);
             }
         });
     }

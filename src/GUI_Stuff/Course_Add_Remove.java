@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.derby.shared.common.error.DerbySQLIntegrityConstraintViolationException;
 
 /**
  *
@@ -58,8 +59,6 @@ public class Course_Add_Remove extends javax.swing.JFrame {
         First_Name1 = new javax.swing.JLabel();
         Last_Name1 = new javax.swing.JLabel();
         Address1 = new javax.swing.JLabel();
-        Year = new javax.swing.JTextField();
-        Semester = new javax.swing.JTextField();
         telephone_num1 = new javax.swing.JLabel();
         Course_Code = new javax.swing.JTextField();
         Add = new javax.swing.JButton();
@@ -69,6 +68,9 @@ public class Course_Add_Remove extends javax.swing.JFrame {
         Exit = new javax.swing.JButton();
         Remove = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        Year = new javax.swing.JComboBox<>();
+        Sem = new javax.swing.JComboBox<>();
+        Combo = new javax.swing.JComboBox<>();
 
         Add_Info.setText("                     Add Information Here");
 
@@ -95,6 +97,9 @@ public class Course_Add_Remove extends javax.swing.JFrame {
                 formComponentShown(evt);
             }
         });
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,6 +153,17 @@ public class Course_Add_Remove extends javax.swing.JFrame {
 
         jLabel1.setText("First Select Row from JTable then press Remove Button");
 
+        Year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Year 1", "Year 2", "Year 3", "Year 4", "Any" }));
+        Year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                YearActionPerformed(evt);
+            }
+        });
+
+        Sem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sem 1", "Sem 2", "Any" }));
+
+        Combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENME", "ENEL", "ENGE", "ENSE", "COMP" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,127 +171,161 @@ public class Course_Add_Remove extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(Last_Name1)
-                                .addGap(187, 187, 187))
+                        .addGap(110, 110, 110)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Sem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Course_Code, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Add_Info1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(92, 92, 92))))
+                                .addComponent(Address1)
+                                .addGap(23, 23, 23))
+                            .addComponent(telephone_num1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Year, javax.swing.GroupLayout.Alignment.LEADING, 0, 66, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(102, 102, 102)
-                                        .addComponent(Student_ID1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(68, 68, 68)
-                                        .addComponent(Course_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(111, 111, 111)
-                                        .addComponent(First_Name1)))
-                                .addComponent(Year, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Semester, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(130, 130, 130)
-                                .addComponent(Address1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(118, 118, 118)
-                                .addComponent(telephone_num1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addGap(38, 38, 38)
+                        .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Course_Name, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Price, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Last_Name1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(First_Name1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Add_Info1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Student_ID1)
+                                        .addComponent(Course_Code, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 951, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Main_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
+                    .addComponent(Main_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Main_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(Main_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(58, 58, 58)
                 .addComponent(Add_Info1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addComponent(Student_ID1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Course_Code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(First_Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Course_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(Last_Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Course_Code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(First_Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Course_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Last_Name1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGap(22, 22, 22)
                 .addComponent(Address1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(telephone_num1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Semester, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(Sem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addComponent(Add)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Remove)
+                .addComponent(Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1387, 647));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
       
     }//GEN-LAST:event_addActionPerformed
-
+  //Ignore white space method which allows a string which contains spaces to be squished together
+    public static String ignoreWhiteSpace(String s){
+        String ignored = "";
+        //for loop that iterates throught the length of the string searching for whitespace.
+        for(int i = 0; i<s.length(); i++){
+            if(!Character.isWhitespace(s.charAt(i))){
+                ignored+=s.charAt(i);
+            }
+        }
+        return ignored;
+    }
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        //setting price to 0
+        float price = 0;
+        // declaring below variables
         String crse_id = Course_Code.getText().trim();
-        String crse_name = Course_Name.getText().trim();
-        Float price = Float.parseFloat(Price.getText().trim());
-        String year = Year.getText().trim();
-        String semester = Semester.getText().trim();
+        String crse_name = ignoreWhiteSpace(Course_Name.getText().trim());
+        String courses = (String) Combo.getSelectedItem();
+        String year = (String) Year.getSelectedItem();
+        String semester = (String) Sem.getSelectedItem();
+        //String builder so that I can put the concatenated string into the sql statement. 
+        String building = new StringBuilder().append(courses).append(crse_id).toString();
+        
+        try{
+            // parsing price so that it can be used in the sql statement
+            price = Float.parseFloat(Price.getText().trim());
+        }
+        // catch method that is meant to catch Strings in integer text fields.
+        catch(NumberFormatException e){
+              JOptionPane.showMessageDialog(null, "Please enter an integer");
+              //refreshes page
+              this.setVisible(false);
+              new Course_Add_Remove().setVisible(true);
+        }
         try {
+            //initialising connection
             Connection conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd ;create=true", "pdc", "pdc");
             Statement st = conn.createStatement();
-
+            // if statement to check if the declared variables are empty if so run error message not all fields have been submitted 
             if(crse_id.isEmpty() || crse_name.isEmpty() || Price.getText().equals(" ") || year.isEmpty() || semester.isEmpty())
             {
-                JOptionPane.showMessageDialog(this,"Not all fields have been submitted");
+                JOptionPane.showMessageDialog(null,"Not all fields have been submitted");
+            }
+            // If course_code does not equal 3, User is let known that he/she has to reinput the value
+            else if(Course_Code.getText().length() > 3 || Course_Code.getText().length() < 3) {
+            JOptionPane.showMessageDialog(null, "Please enter a 3 number digit");
+            }
+            //else if statement made for course names as it should not accept any numbers.
+            else if(!crse_name.matches("[a-zA-z]+")){
+            JOptionPane.showMessageDialog(null, "Please enter a String");
             }
             else{
-                st.execute("INSERT INTO COURSES VALUES ('"+crse_id+"','"+crse_name+"',"+price+",'"+year+"','"+semester+"')");
-                JOptionPane.showMessageDialog(this, "Course Registered.");
+                // exectuting statement
+               st.execute("INSERT INTO COURSES VALUES ('"+building+"','"+crse_name+"',"+price+",'"+year+"','"+semester+"')");
+               //Option Pane that displays that the Course has been registered 
+               JOptionPane.showMessageDialog(null, "Course Registered.");
                 setVisible(false);
-                new Course_Add_Remove().setVisible(true);
-
+                new Course_Add_Remove().setVisible(true);  
             }
-        } catch (SQLException ex) {
+            }
+        //Handling SQL Exception
+         catch (SQLException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AddActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+       
+        /*
+        SAME EXACT CONCEPT AS PREVIOUS CLASS
+        */
         Connection conn = null;   
          ResultSet rs = null;
         try {
@@ -298,7 +348,8 @@ public class Course_Add_Remove extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void Main_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Main_MenuActionPerformed
-       setVisible(false);
+       // Going to Admin menu.
+        setVisible(false);
        new Admin().setVisible(true);
     }//GEN-LAST:event_Main_MenuActionPerformed
 
@@ -307,22 +358,36 @@ public class Course_Add_Remove extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitActionPerformed
 
     private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
-      int row = Table.getSelectedRow();
-      String cell = Table.getModel().getValueAt(row, 2).toString();
-      String delete = "DELETE FROM COURSES WHERE PRICE= " + cell;
      
+     //Delete method that deletes from COURSES
       try{
+          int row = Table.getSelectedRow();
+          String cell = Table.getModel().getValueAt(row, 2).toString();
+          String delete = "DELETE FROM COURSES WHERE PRICE= " + cell;
+         // Establishing Connection
           Connection conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd ;create=true", "pdc", "pdc");
+          //Prepare Statement
           PreparedStatement prepared = conn.prepareStatement(delete);
+          // Execute Statement
           prepared.execute();
           setVisible(false);
           new Course_Add_Remove().setVisible(true);
       }
-      catch(SQLException e ){
-          
-      }
+       catch(DerbySQLIntegrityConstraintViolationException ex){
+         JOptionPane.showMessageDialog(null,"You have inserted a duplicate please enter another value");
+     }
+      catch(ArrayIndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(null, "Please select a row before you delete");
+      } catch (SQLException ex) {
+            Logger.getLogger(Course_Add_Remove.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
              
     }//GEN-LAST:event_RemoveActionPerformed
+
+    private void YearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_YearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,6 +433,7 @@ public class Course_Add_Remove extends javax.swing.JFrame {
     private javax.swing.JLabel Add_Info1;
     private javax.swing.JLabel Address;
     private javax.swing.JLabel Address1;
+    private javax.swing.JComboBox<String> Combo;
     private javax.swing.JTextField Course_Code;
     private javax.swing.JTextField Course_Name;
     private javax.swing.JButton Exit;
@@ -378,11 +444,11 @@ public class Course_Add_Remove extends javax.swing.JFrame {
     private javax.swing.JButton Main_Menu;
     private javax.swing.JTextField Price;
     private javax.swing.JButton Remove;
-    private javax.swing.JTextField Semester;
+    private javax.swing.JComboBox<String> Sem;
     private javax.swing.JLabel Student_ID;
     private javax.swing.JLabel Student_ID1;
     private javax.swing.JTable Table;
-    private javax.swing.JTextField Year;
+    private javax.swing.JComboBox<String> Year;
     private javax.swing.JButton add;
     private javax.swing.JTextField address;
     private javax.swing.JTextField f_name;

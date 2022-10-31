@@ -50,6 +50,9 @@ public class Viewing_Admins extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -102,27 +105,26 @@ public class Viewing_Admins extends javax.swing.JFrame {
                 .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(965, 598));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-       Connection conn = null;   
+         Connection conn = null;   
          ResultSet rs = null;
-       //JTableHeader header = jTable1.getTableHeader();
-        // ((DefaultTableCellRenderer)header.getDefaultRenderer()).setBackground(Color.BLACK);
-        //header.setFont(new Font("Helvetica Neue", Font.BOLD, 14));
-           
+     
+         //Same as other Jtable methods
+        
         try {
             DB_Manager manage = new DB_Manager();
-            String logging = "SELECT *FROM ADMINS"; 
+            String logging = "SELECT *FROM ADMIN"; 
             conn = manage.getConnection(); 
                  System.out.println("jdbc:derby:CourseDB_Ebd; create=true" + " Connection Established");
               PreparedStatement st = conn.prepareStatement(logging);
               rs = st.executeQuery();
              
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
-
-            //Reading data from rooms table and displaying it 
+            
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
             }
@@ -135,6 +137,7 @@ public class Viewing_Admins extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void Main_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Main_MenuActionPerformed
+      //takes you bacck to Admin Menu
       setVisible(false);
       new Admin().setVisible(true);
     }//GEN-LAST:event_Main_MenuActionPerformed

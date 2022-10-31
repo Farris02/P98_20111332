@@ -95,46 +95,52 @@ public class Admin_Remove extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Remove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                    .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane2)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jLabel1)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(Remove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Remove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1202, 566));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-    Connection conn = null;   
+    //setting connection 
+        Connection conn = null;   
          ResultSet rs = null;
         try {
+            // Calling DB Manager Class
             DB_Manager manage = new DB_Manager();
-            String logging = "SELECT *FROM ADMINS"; 
-            conn = manage.getConnection(); 
+            // Setting string to select function
+            String logging = "SELECT *FROM ADMIN"; 
+                 conn = manage.getConnection(); 
+                 //Printing out if conneection is made
                  System.out.println("jdbc:derby:CourseDB_Ebd;create=true" + " Connection Established");
-              PreparedStatement st = conn.prepareStatement(logging);
-              rs = st.executeQuery();
+                 //Prepared statement initialized              
+                 PreparedStatement st = conn.prepareStatement(logging);
+                 // executing query
+                 rs = st.executeQuery();
              
             DefaultTableModel model = (DefaultTableModel) Table.getModel();
 
-       
+       // looping through the table. 
             while (rs.next()) {
                 model.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
             }
@@ -144,6 +150,7 @@ public class Admin_Remove extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
+      // Going to Admin
        this.setVisible(false);
        new Admin().setVisible(true);
     }//GEN-LAST:event_MenuActionPerformed
@@ -153,19 +160,29 @@ public class Admin_Remove extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitActionPerformed
 
     private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
-        int row = Table.getSelectedRow();
-      String cell = Table.getModel().getValueAt(row,0).toString();
-      String delete = "DELETE FROM ADMINS WHERE ADMIN_ID="+cell;
-     
-      try{
+ try{
+          // Initializing row    
+          int row = Table.getSelectedRow();
+          //Establishing cell
+          String cell = Table.getModel().getValueAt(row,0).toString();
+          // delete statement initialized
+          String delete = "DELETE FROM ADMIN WHERE ADMIN_ID="+cell;
+          // establishing connection
           Connection conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd;create=true", "pdc", "pdc");
+         // making a prepared statement for the sql statement   
           PreparedStatement prepared = conn.prepareStatement(delete);
+         // executing stement
           prepared.execute();
+          // reloading the page to make sure that admin is deleted.
           this.setVisible(false);
           new Admin_Remove().setVisible(true);
       }
       catch(SQLException e ){
           e.printStackTrace();
+      }
+      catch(ArrayIndexOutOfBoundsException ex){
+         // Catches ArrayIndexOutOfBoundsException for users that select remove then 
+          JOptionPane.showMessageDialog(null, "Please select a row before you remove");
       }
     }//GEN-LAST:event_RemoveActionPerformed
 
@@ -194,6 +211,9 @@ public class Admin_Remove extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Admin_Remove.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

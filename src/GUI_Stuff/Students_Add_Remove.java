@@ -11,11 +11,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.derby.shared.common.error.DerbySQLIntegrityConstraintViolationException;
 
 /**
  *
@@ -85,7 +87,7 @@ public class Students_Add_Remove extends javax.swing.JFrame {
         });
         scrollpane.setViewportView(Table);
 
-        Add_Info.setText("                     Add Information Here");
+        Add_Info.setText("                   Students  Add Information Here");
 
         Student_ID.setText("StudentID");
 
@@ -94,6 +96,8 @@ public class Students_Add_Remove extends javax.swing.JFrame {
         Last_Name.setText("Last Name");
 
         Address.setText("Address");
+
+        phone_num.setText("021");
 
         telephone_num.setText("Phone Number");
 
@@ -147,7 +151,7 @@ public class Students_Add_Remove extends javax.swing.JFrame {
                         .addGap(99, 99, 99)
                         .addComponent(telephone_num))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(last_name, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                             .addComponent(f_name, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
@@ -156,23 +160,21 @@ public class Students_Add_Remove extends javax.swing.JFrame {
                             .addComponent(phone_num, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                             .addComponent(add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(Add_Info, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
-                .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Add_Info, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Main_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)))
+                    .addComponent(Main_Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(Exit, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(scrollpane)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(Add_Info, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(47, 47, 47)
+                .addComponent(Add_Info)
+                .addGap(40, 40, 40)
                 .addComponent(Student_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(stud_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,17 +205,20 @@ public class Students_Add_Remove extends javax.swing.JFrame {
                 .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1259, 590));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TableComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_TableComponentShown
 //Nothing Here
     }//GEN-LAST:event_TableComponentShown
 
+//JTable Method here 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
          Connection conn = null;   
          ResultSet rs = null;
         try {
+            //Same as other Jtable methods except getting two ints and three strings. 
             DB_Manager manage = new DB_Manager();
             String logging = "SELECT *FROM STUDENTS_INFO"; 
             conn = manage.getConnection(); 
@@ -225,57 +230,99 @@ public class Students_Add_Remove extends javax.swing.JFrame {
 
        
             while (rs.next()) {
-                model.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
+                model.addRow(new Object[]{rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)});
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_formComponentShown
-
+ 
+// Ignore WhiteSpaces Method
+    public static String ignoreWhiteSpace(String s){
+        String ignored = "";
+        for(int i = 0; i<s.length(); i++){
+            if(!Character.isWhitespace(s.charAt(i))){
+                ignored+=s.charAt(i);
+            }
+        }
+        return ignored;
+    }
+ 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-     int id =  Integer.parseInt(stud_id.getText().trim());
+     int id =  0;
      String fi = f_name.getText().trim();
      String la = last_name.getText().trim();
-     String addresses = address.getText().trim();
-     String phone = phone_num.getText().trim();
-        try {
+     String addresses = ignoreWhiteSpace(address.getText().trim());
+    
+     
+     int phone = 0;
+     try{
+         id = Integer.parseInt(stud_id.getText().trim());
+         phone = Integer.parseInt(phone_num.getText().trim());
+     } 
+     catch(NumberFormatException ex){
+         JOptionPane.showMessageDialog(null, "Please Enter an Integer");
+         this.setVisible(false);
+         new Students_Add_Remove().setVisible(true);
+     }
+ 
+     try {
             Connection conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd ;create=true", "pdc", "pdc");
             Statement st = conn.createStatement();
             
-            if(stud_id.getText().equals(" ") || fi.isEmpty() || la.isEmpty() || addresses.isEmpty() || phone.isEmpty()){
+            if(stud_id.getText().equals(" ") || fi.isEmpty() || la.isEmpty() || addresses.isEmpty() || phone_num.getText().equals(" ")){
                 JOptionPane.showMessageDialog(this,"Not all fields have been submitted");
             }
+            else if(phone_num.getText().length() != 10){
+                JOptionPane.showMessageDialog(null, "Please enter a Phone Number with 10 digits");
+            } 
+            else if (stud_id.getText().length() != 8){
+                JOptionPane.showMessageDialog(null, "Please Enter a Student ID with 8 digits");
+            }     
+            else if(!fi.matches("[a-zA-z]+")&& !la.matches("[a-zA-z]+")){
+                JOptionPane.showMessageDialog(null, "Please enter a String");
+            }
             else{
-                 st.execute("INSERT INTO STUDENTS_INFO(STUDENT_ID, F_NAME, L_NAME, ADDRESS, PHONE_NUMBER) VALUES ("+id+",'"+fi+"','"+la+"','"+addresses+"','"+phone+"')");
+                 st.execute("INSERT INTO STUDENTS_INFO VALUES ("+id+",'"+fi+"','"+la+"','"+addresses+"',"+phone+")");
               JOptionPane.showMessageDialog(this, "Student Registered."); 
               setVisible(false);
               new Students_Add_Remove().setVisible(true);
               
-             
+ 
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
+     //Catching Duplicates
+     catch(DerbySQLIntegrityConstraintViolationException ex){
+         JOptionPane.showMessageDialog(null,"You have inserted a duplicate Student ID please enter another value");
+     }
+     // catching NumberFormatException
         catch(NumberFormatException e){
          e.printStackTrace();
+        } 
+     // catching SQLException
+     catch (SQLException ex) {
+            Logger.getLogger(Students_Add_Remove.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addActionPerformed
 
     private void Main_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Main_MenuActionPerformed
-       setVisible(false);
+       // Goes back to Admin Frame
+        setVisible(false);
        new Admin().setVisible(true);
     }//GEN-LAST:event_Main_MenuActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        // Exits Program
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      int row = Table.getSelectedRow();
-      String cell = Table.getModel().getValueAt(row, 0).toString();
-      String delete = "DELETE FROM STUDENTS_INFO WHERE STUDENT_ID= " + cell;
+      
      
       try{
+          int row = Table.getSelectedRow();
+          String cell = Table.getModel().getValueAt(row, 0).toString();
+          String delete = "DELETE FROM STUDENTS_INFO WHERE STUDENT_ID= " + cell;
           Connection conn = DriverManager.getConnection("jdbc:derby:CourseDB_Ebd ;create=true", "pdc", "pdc");
           PreparedStatement prepared = conn.prepareStatement(delete);
           prepared.execute();
@@ -283,7 +330,10 @@ public class Students_Add_Remove extends javax.swing.JFrame {
           new Students_Add_Remove().setVisible(true);
       }
       catch(SQLException e ){
-          
+       e.printStackTrace();
+      }
+      catch(ArrayIndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(null, "Please select a row before you remove");
       }
              
     }//GEN-LAST:event_jButton2ActionPerformed
